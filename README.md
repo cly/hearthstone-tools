@@ -9,6 +9,15 @@ Please follow the instructions at https://github.com/octalmage/robotjs to instal
 * `cd hearthstone-tools`
 * TBD
 
+## Long-term vision
+1. Start a web server while you play Hearthstone.
+2. Render a web page with helpful tools as you play.
+
+## Architecture
+1. Web server talks to browser page on some websocket port.
+2. Server also talks to screen, mouse and keyboard through robotjs.
+2. As things are being automated, record actions and render in browser.
+
 ## TODOs
 1. Setup a commandline REPL for instructions.
 2. Create an exporter bin that will export cards.
