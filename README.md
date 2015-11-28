@@ -9,6 +9,18 @@ Please follow the instructions at https://github.com/octalmage/robotjs to instal
 * `cd hearthstone-tools`
 * TBD
 
+## Setup
+* Run Hearthstone
+* Make sure graphics resolution is 1024x768 and quality is High.
+    - This restriction will be relaxed in the future.
+* Ensure the Hearthstone app is locked to the top left pixel of the screen.
+    - A tool like Spectacle on Mac OS X will make this easy.
+    - This restriction will be relaxed in the future.
+
+## Support
+* Only tested on Mac OS X El Capitan 10.11.1 with a MacBook Pro 15in.
+    - Please let me know if it works/does not work on other platforms!
+
 ## Long-term vision
 1. Start a web server while you play Hearthstone.
 2. Render a web page with helpful tools as you play.

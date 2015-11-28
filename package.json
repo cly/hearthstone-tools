@@ -4,6 +4,8 @@
   "description": "Tools to improve your Hearthstone game",
   "main": "index.js",
   "dependencies": {
+    "co": "4.6.0",
+    "get-pixels": "3.2.3",
     "robotjs": "0.3.4"
   },
   "devDependencies": {},
