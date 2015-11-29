@@ -21,12 +21,12 @@ var HearthstoneClient = function() {
 }
 HearthstoneClient.VIEW = VIEW
 
-HearthstoneClient.prototype.go = function(view) {
+HearthstoneClient.prototype.go = function * (view) {
     // Focus on the window first.
     robot.moveMouseSmooth(200, 34)
     robot.mouseClick()
     if (view === VIEW.MY_COLLECTION) {
-        myCollectionButton.click()
+        yield myCollectionButton.click()
         // robot.moveMouseSmooth(...myCollectionButton.getCenter().toArray())
         // robo// setTimeout(function() {
 //     robot.moveMouseSmooth(x + 100, y)
@@ -35,15 +35,15 @@ HearthstoneClient.prototype.go = function(view) {
     }
 }
 
-HearthstoneClient.prototype.page = function() {
+HearthstoneClient.prototype.page = function * () {
     var myCollectionNextButton = new MyCollectionNextButton(gameWindow)
     var myCollectionPreviousButton = new MyCollectionPreviousButton(gameWindow)
 
-    myCollectionNextButton.click()
-    setTimeout(function() {
-        myCollectionNextButton.click()
-        myCollectionPreviousButton.click()
-    }, 1000)
+    yield myCollectionNextButton.click()
+    // setTimeout(function() {
+    yield myCollectionNextButton.click()
+    yield myCollectionPreviousButton.click()
+    // }, 1000)
 }
 
 module.exports = HearthstoneClient

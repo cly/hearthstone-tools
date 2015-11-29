@@ -22,8 +22,18 @@ Button.prototype.getBottomRight = function() {
 }
 
 Button.prototype.click = function() {
-    robot.moveMouseSmooth(...this.getCenter().toArray())
-    robot.mouseClick()
+    return new Promise((resolve, reject) => {
+        robot.moveMouseSmooth(...this.getCenter().toArray())
+        robot.mouseClick()
+
+        if (!this.clickAnimation) {
+            throw new Error('A `clickAnimation` must be provided for `Button`.')
+        }
+
+        setTimeout(function() {
+            return resolve()
+        }, this.clickAnimation)
+    })
 }
 
 module.exports = Button

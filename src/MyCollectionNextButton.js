@@ -8,6 +8,9 @@ var MyCollectionNextButton = function(gameWindow) {
     } else {
         throw new Error('`gameWindow` resolution is not supported.')
     }
+
+    // Just a guess.
+    this.clickAnimation = 1000
 }
 MyCollectionNextButton.prototype = Object.create(Button.prototype)
 MyCollectionNextButton.prototype.constructor = MyCollectionNextButton
