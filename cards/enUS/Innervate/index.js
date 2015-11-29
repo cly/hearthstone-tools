@@ -27,9 +27,9 @@ Innervate.prototype.getImage = function() {
     return new Promise((resolve, reject) => {
         var url = path.join(__dirname, this.data.image)
 
-        getPixels(url, function(err, pixels) {
-            if (err) {
-                return reject(err)
+        getPixels(url, function(e, pixels) {
+            if (e) {
+                return reject(new Error(e))
             } else {
                 return resolve(pixels)
             }
