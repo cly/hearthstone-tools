@@ -9,9 +9,20 @@ var cardDb = new CardDb()
 
 var Innervate = cardDb.get('Innervate')
 
+var delay = function(ms) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            return resolve()
+        }, ms)
+    })
+}
+
 
 co(function* () {
     hearthstoneClient.go(HearthstoneClient.VIEW.MY_COLLECTION)
+    yield delay(2000)
+    hearthstoneClient.page()
+
     // console.log(Innervate)
     // var kk = yield Innervate.getImage()
 

@@ -1,5 +1,7 @@
 var robot = require('robotjs')
 var MyCollectionButton = require('./MyCollectionButton')
+var MyCollectionNextButton = require('./MyCollectionNextButton')
+var MyCollectionPreviousButton = require('./MyCollectionPreviousButton')
 var GameWindow = require('./GameWindow')
 var Rect = require('./Rect')
 
@@ -11,9 +13,7 @@ var VIEW = {
     MY_COLLECTION: 'MY_COLLECTION'
 }
 
-
 robot.setMouseDelay(2)
-console.log(robot)
 
 var HearthstoneClient = function() {
     this.currentView = VIEW.MENU
@@ -33,6 +33,17 @@ HearthstoneClient.prototype.go = function(view) {
 //     robot.mouseClick();
 // }, 10)
     }
+}
+
+HearthstoneClient.prototype.page = function() {
+    var myCollectionNextButton = new MyCollectionNextButton(gameWindow)
+    var myCollectionPreviousButton = new MyCollectionPreviousButton(gameWindow)
+
+    myCollectionNextButton.click()
+    setTimeout(function() {
+        myCollectionNextButton.click()
+        myCollectionPreviousButton.click()
+    }, 1000)
 }
 
 module.exports = HearthstoneClient
