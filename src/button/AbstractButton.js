@@ -1,24 +1,18 @@
 var robot = require('robotjs')
-var GameWindow = require('../GameWindow')
+var gameWindow = require('../gameWindow')
 
-var AbstractButton = function(gameWindow) {
-    if (!(gameWindow instanceof GameWindow)) {
-        throw new Error('`gameWindow` must be an instance of `GameWindow`.')
-    }
-
-    this.gameWindow = gameWindow
-}
+var AbstractButton = function() {}
 
 AbstractButton.prototype.getCenter = function() {
-    return (this.rect.getCenter()).add(this.gameWindow.getOffset())
+    return (this.getSize().getCenter()).add(gameWindow.getOffset())
 }
 
 AbstractButton.prototype.getTopLeft = function() {
-    return (this.rect.getTopLeft()).add(this.gameWindow.getOffset())
+    return (this.getSize().getTopLeft()).add(gameWindow.getOffset())
 }
 
 AbstractButton.prototype.getBottomRight = function() {
-    return (this.rect.getBottomRight()).add(this.gameWindow.getOffset())
+    return (this.getSize().getBottomRight()).add(gameWindow.getOffset())
 }
 
 AbstractButton.prototype.click = function() {

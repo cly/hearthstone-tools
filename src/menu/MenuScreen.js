@@ -1,10 +1,8 @@
 var AbstractScreen = require('../screen/AbstractScreen')
 var MyCollectionButton = require('./MyCollectionButton')
 
-var MenuScreen = function(gameWindow) {
-    AbstractScreen.call(this, gameWindow)
-
-    this.myCollectionButton = new MyCollectionButton(gameWindow)
+var MenuScreen = function() {
+    this.myCollectionButton = new MyCollectionButton()
 }
 MenuScreen.prototype = Object.create(AbstractScreen.prototype)
 MenuScreen.prototype.constructor = MenuScreen

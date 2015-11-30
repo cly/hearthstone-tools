@@ -1,7 +1,9 @@
 var Point = require('./geometry/Point')
 var Rect = require('./geometry/Rect')
 
-var GameWindow = function(rect) {
+var GameWindow = function(rect) {}
+
+GameWindow.prototype.setSize = function(rect) {
     if (!(rect instanceof Rect)) {
         throw new Error('`rect` must be an instance of `Rect`.')
     }
@@ -19,4 +21,4 @@ GameWindow.prototype.getOffset = function() {
     return new Point(this.rect.x - 1, this.rect.y - 1)
 }
 
-module.exports = GameWindow
+module.exports = new GameWindow()
