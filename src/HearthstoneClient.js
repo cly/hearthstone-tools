@@ -6,7 +6,7 @@ var MyCollectionScreen = require('./myCollection/MyCollectionScreen')
 var Rect = require('./geometry/Rect')
 
 // TODO: Detect these settings?
-gameWindow.setSize(new Rect(1, 46, 1024, 768))
+gameWindow.setRect(new Rect(1, 46, 1024, 768))
 
 var menuScreen = new MenuScreen()
 var myCollectionScreen = new MyCollectionScreen()

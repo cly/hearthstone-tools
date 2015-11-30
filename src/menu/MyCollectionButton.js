@@ -9,7 +9,7 @@ var MyCollectionButton = function() {
 MyCollectionButton.prototype = Object.create(AbstractButton.prototype)
 MyCollectionButton.prototype.constructor = MyCollectionButton
 
-MyCollectionButton.prototype.getGeometry = function() {
+MyCollectionButton.prototype.getPolygon = function() {
     if (gameWindow.hasResolution(1024, 768)) {
         return new Rect(447, 599, 257, 102)
     } else {

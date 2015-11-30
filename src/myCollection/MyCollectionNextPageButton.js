@@ -9,7 +9,7 @@ var MyCollectionNextPageButton = function() {
 MyCollectionNextPageButton.prototype = Object.create(AbstractButton.prototype)
 MyCollectionNextPageButton.prototype.constructor = MyCollectionNextPageButton
 
-MyCollectionNextPageButton.prototype.getGeometry = function() {
+MyCollectionNextPageButton.prototype.getPolygon = function() {
     if (gameWindow.hasResolution(1024, 768)) {
         return new Rect(727, 370, 1, 1)
     } else {

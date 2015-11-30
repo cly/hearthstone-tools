@@ -3,7 +3,7 @@ var Rect = require('./geometry/Rect')
 
 var GameWindow = function(rect) {}
 
-GameWindow.prototype.setSize = function(rect) {
+GameWindow.prototype.setRect = function(rect) {
     if (!(rect instanceof Rect)) {
         throw new Error('`rect` must be an instance of `Rect`.')
     }
