@@ -4,12 +4,12 @@ var gameWindow = require('../gameWindow')
 
 var MyCollectionButton = function() {
     AbstractButton.call(this)
-    this.clickAnimation = 800
+    this.clickAnimation = 2000
 }
 MyCollectionButton.prototype = Object.create(AbstractButton.prototype)
 MyCollectionButton.prototype.constructor = MyCollectionButton
 
-MyCollectionButton.prototype.getSize = function() {
+MyCollectionButton.prototype.getGeometry = function() {
     if (gameWindow.hasResolution(1024, 768)) {
         return new Rect(447, 599, 257, 102)
     } else {

@@ -4,15 +4,15 @@ var gameWindow = require('../gameWindow')
 var AbstractButton = function() {}
 
 AbstractButton.prototype.getCenter = function() {
-    return (this.getSize().getCenter()).add(gameWindow.getOffset())
+    return (this.getGeometry().getCenter()).add(gameWindow.getOffset())
 }
 
 AbstractButton.prototype.getTopLeft = function() {
-    return (this.getSize().getTopLeft()).add(gameWindow.getOffset())
+    return (this.getGeometry().getTopLeft()).add(gameWindow.getOffset())
 }
 
 AbstractButton.prototype.getBottomRight = function() {
-    return (this.getSize().getBottomRight()).add(gameWindow.getOffset())
+    return (this.getGeometry().getBottomRight()).add(gameWindow.getOffset())
 }
 
 AbstractButton.prototype.click = function() {
