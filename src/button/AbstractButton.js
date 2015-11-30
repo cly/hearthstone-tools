@@ -1,7 +1,7 @@
 var robot = require('robotjs')
-var GameWindow = require('./GameWindow')
+var GameWindow = require('../GameWindow')
 
-var Button = function(gameWindow) {
+var AbstractButton = function(gameWindow) {
     if (!(gameWindow instanceof GameWindow)) {
         throw new Error('`gameWindow` must be an instance of `GameWindow`.')
     }
@@ -9,25 +9,25 @@ var Button = function(gameWindow) {
     this.gameWindow = gameWindow
 }
 
-Button.prototype.getCenter = function() {
+AbstractButton.prototype.getCenter = function() {
     return (this.rect.getCenter()).add(this.gameWindow.getOffset())
 }
 
-Button.prototype.getTopLeft = function() {
+AbstractButton.prototype.getTopLeft = function() {
     return (this.rect.getTopLeft()).add(this.gameWindow.getOffset())
 }
 
-Button.prototype.getBottomRight = function() {
+AbstractButton.prototype.getBottomRight = function() {
     return (this.rect.getBottomRight()).add(this.gameWindow.getOffset())
 }
 
-Button.prototype.click = function() {
+AbstractButton.prototype.click = function() {
     return new Promise((resolve, reject) => {
         robot.moveMouseSmooth(...this.getCenter().toArray())
         robot.mouseClick()
 
         if (!this.clickAnimation) {
-            throw new Error('A `clickAnimation` must be provided for `Button`.')
+            throw new Error('A `clickAnimation` must be provided for `AbstractButton`.')
         }
 
         setTimeout(function() {
@@ -36,4 +36,4 @@ Button.prototype.click = function() {
     })
 }
 
-module.exports = Button
+module.exports = AbstractButton

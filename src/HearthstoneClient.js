@@ -1,12 +1,13 @@
 var robot = require('robotjs')
-var MyCollectionButton = require('./MyCollectionButton')
-var MyCollectionNextButton = require('./MyCollectionNextButton')
-var MyCollectionPreviousButton = require('./MyCollectionPreviousButton')
+
 var GameWindow = require('./GameWindow')
-var Rect = require('./Rect')
+var MenuScreen = require('./menu/MenuScreen')
+var MyCollectionScreen = require('./myCollection/MyCollectionScreen')
+var Rect = require('./geometry/Rect')
 
 var gameWindow = new GameWindow(new Rect(1, 46, 1024, 768))
-var myCollectionButton = new MyCollectionButton(gameWindow)
+var menuScreen = new MenuScreen(gameWindow)
+var myCollectionScreen = new MyCollectionScreen(gameWindow)
 
 var VIEW = {
     MENU: 'MENU',
@@ -26,24 +27,14 @@ HearthstoneClient.prototype.go = function * (view) {
     robot.moveMouseSmooth(200, 34)
     robot.mouseClick()
     if (view === VIEW.MY_COLLECTION) {
-        yield myCollectionButton.click()
-        // robot.moveMouseSmooth(...myCollectionButton.getCenter().toArray())
-        // robo// setTimeout(function() {
-//     robot.moveMouseSmooth(x + 100, y)
-//     robot.mouseClick();
-// }, 10)
+        yield menuScreen.myCollectionButton.click()
     }
 }
 
 HearthstoneClient.prototype.page = function * () {
-    var myCollectionNextButton = new MyCollectionNextButton(gameWindow)
-    var myCollectionPreviousButton = new MyCollectionPreviousButton(gameWindow)
-
-    yield myCollectionNextButton.click()
-    // setTimeout(function() {
-    yield myCollectionNextButton.click()
-    yield myCollectionPreviousButton.click()
-    // }, 1000)
+    yield myCollectionScreen.myCollectionNextPageButton.click()
+    yield myCollectionScreen.myCollectionNextPageButton.click()
+    yield myCollectionScreen.myCollectionPreviousPageButton.click()
 }
 
 module.exports = HearthstoneClient

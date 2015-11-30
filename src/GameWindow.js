@@ -1,5 +1,5 @@
-var Point = require('./Point')
-var Rect = require('./Rect')
+var Point = require('./geometry/Point')
+var Rect = require('./geometry/Rect')
 
 var GameWindow = function(rect) {
     if (!(rect instanceof Rect)) {
