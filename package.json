@@ -6,7 +6,8 @@
   "dependencies": {
     "co": "4.6.0",
     "get-pixels": "3.2.3",
-    "robotjs": "0.3.4"
+    "robotjs": "0.3.4",
+    "tinycolor2": "1.3.0"
   },
   "devDependencies": {},
   "scripts": {
