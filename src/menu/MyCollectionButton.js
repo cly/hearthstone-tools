@@ -9,7 +9,6 @@ var MyCollectionButton = function(gameWindow) {
         throw new Error('`gameWindow` resolution is not supported.')
     }
 
-    // Just a guess.
     this.clickAnimation = 800
 }
 MyCollectionButton.prototype = Object.create(AbstractButton.prototype)

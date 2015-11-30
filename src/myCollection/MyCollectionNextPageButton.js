@@ -9,7 +9,6 @@ var MyCollectionNextPageButton = function(gameWindow) {
         throw new Error('`gameWindow` resolution is not supported.')
     }
 
-    // Just a guess.
     this.clickAnimation = 1000
 }
 MyCollectionNextPageButton.prototype = Object.create(AbstractButton.prototype)
