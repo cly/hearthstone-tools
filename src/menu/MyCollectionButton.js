@@ -4,7 +4,7 @@ var gameWindow = require('../gameWindow')
 
 var MyCollectionButton = function() {
     AbstractButton.call(this)
-    this.clickAnimation = 2000
+    this.clickAnimation = 3000
 }
 MyCollectionButton.prototype = Object.create(AbstractButton.prototype)
 MyCollectionButton.prototype.constructor = MyCollectionButton

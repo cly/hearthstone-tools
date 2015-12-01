@@ -11,16 +11,19 @@ var MyCollectionScreen = function() {
     ;[0, 1].forEach(function(row) {
         ;[0, 1, 2, 3].forEach(function(column) {
             self.myCollectionCardReaders.push(new MyCollectionCardReader(row, column))
-
-
         })
     })
     this.myCollectionNextPageButton = new MyCollectionNextPageButton()
     this.myCollectionPreviousPageButton = new MyCollectionPreviousPageButton()
 
-    console.log(this.myCollectionCardReaders[0].getPolygon())
 }
 MyCollectionScreen.prototype = Object.create(AbstractScreen.prototype)
 MyCollectionScreen.prototype.constructor = MyCollectionScreen
+
+MyCollectionScreen.prototype.getCards = function() {
+    for (var i = 0, ii = 8; i < ii; ++i) {
+        this.myCollectionCardReaders[i].getCard()
+    }
+}
 
 module.exports = MyCollectionScreen

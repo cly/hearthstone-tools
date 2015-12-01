@@ -10,7 +10,7 @@ var cardDb = new CardDb()
 var Innervate = cardDb.get('Innervate')
 
 co(function* () {
-    yield hearthstoneClient.go(HearthstoneClient.VIEW.MY_COLLECTION)
+    // yield hearthstoneClient.go(HearthstoneClient.VIEW.MY_COLLECTION)
     // yield delay(2000)
     yield hearthstoneClient.page()
 
