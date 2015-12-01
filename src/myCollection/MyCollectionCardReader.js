@@ -35,7 +35,7 @@ MyCollectionCardReader.prototype.getPolygon = function() {
             } else if (this.column === 2) {
                 return new Rect(385, 409, 153, 228)
             } else if (this.column === 3) {
-                return new Rect(558, 409, 153, 228)
+                return new Rect(557, 409, 153, 228)
             }
         }
         throw new Error('`row` must be between 0 and 1 inclusive. `column` must be between 0 and 3 inclusive')
@@ -46,17 +46,17 @@ MyCollectionCardReader.prototype.getPolygon = function() {
 
 MyCollectionCardReader.prototype.getCost = function() {
     var polygon = this.getPolygon()
-    var costPolygon = new Rect(polygon.x, polygon.y, 27, 23)
+    var costPolygon = new Rect(polygon.x + 5, polygon.y - 3, 23, 25)
     var points = costPolygon.getPoints()
 
     var numBright = points
     .map((point) => point.add(gameWindow.getOffset()))
+    // .forEach((point) => robot.moveMouse(point.x, point.y))
     .map((screenPoint) => robot.getPixelColor(screenPoint.x, screenPoint.y))
     .map((color) => tinycolor('#' + color).getLuminance())
-    .reduce((prev, curr) => prev + (curr >= 1 ? 1 : 0), 0)
+    .reduce((prev, curr) => prev + (curr >= 0.97 ? 1 : 0), 0)
 
     console.log(numBright)
-    // .forEach((point) => robot.moveMouse(point.x, point.y))
 
     // console.log(points.length)
     // console.log(colors[0])
