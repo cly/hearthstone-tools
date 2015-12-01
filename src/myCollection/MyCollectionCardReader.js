@@ -3,6 +3,8 @@ var tinycolor = require('tinycolor2')
 var AbstractReader = require('../reader/AbstractReader')
 var gameWindow = require('../gameWindow')
 var Rect = require('../geometry/Rect')
+var Digit = require('../template/Digit')
+var digit = new Digit()
 
 var MyCollectionCardReader = function(row, column) {
     AbstractReader.call(this)
@@ -44,19 +46,47 @@ MyCollectionCardReader.prototype.getPolygon = function() {
     }
 }
 
-MyCollectionCardReader.prototype.getCost = function() {
+// Should only be used for testing. Basically creates the test mask.
+MyCollectionCardReader.prototype.getCostTemplate = function() {
     var polygon = this.getPolygon()
-    var costPolygon = new Rect(polygon.x + 5, polygon.y - 3, 23, 25)
+    var width = 36
+    var height = 25
+    var costPolygon = new Rect(polygon.x, polygon.y - 4, width, height)
     var points = costPolygon.getPoints()
 
-    var numBright = points
+    var template = points
     .map((point) => point.add(gameWindow.getOffset()))
-    // .forEach((point) => robot.moveMouse(point.x, point.y))
     .map((screenPoint) => robot.getPixelColor(screenPoint.x, screenPoint.y))
     .map((color) => tinycolor('#' + color).getLuminance())
-    .reduce((prev, curr) => prev + (curr >= 0.97 ? 1 : 0), 0)
+    .map((luminance) => (luminance >= 0.98 ? 1 : 0))
 
-    console.log(numBright)
+    var str = JSON.stringify(template).match(/.{1,72}/g).join('\n')
+    console.log(str)
+}
+
+MyCollectionCardReader.prototype.getCost = function() {
+    this.getCostTemplate()
+
+
+    // var polygon = this.getPolygon()
+    // var costPolygon = new Rect(polygon.x - 5, polygon.y - 5, 45, 30)
+    // var points = costPolygon.getPoints()
+
+    // // var numBright = points
+    // // .map((point) => point.add(gameWindow.getOffset()))
+    // // .forEach((point) => robot.moveMouseSmooth(point.x, point.y))
+
+    // // robot.moveMouse(500, 500)
+    // var numBright = points
+    // .map((point) => point.add(gameWindow.getOffset()))
+    // .map((screenPoint) => robot.getPixelColor(screenPoint.x, screenPoint.y))
+    // .map((color) => tinycolor('#' + color).getLuminance())
+    // .reduce((prev, curr) => prev + (curr >= 0.97 ? 1 : 0), 0)
+
+
+
+
+    // console.log(numBright)
 
     // console.log(points.length)
     // console.log(colors[0])

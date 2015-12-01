@@ -43,8 +43,8 @@ Rect.prototype.getVertices = function() {
 Rect.prototype.getPoints = function() {
     var points = []
 
-    for (var i = this.x, ii = this.x + this.width; i < ii; ++i) {
-        for (var j = this.y, jj = this.y + this.height; j < jj; ++j) {
+    for (var j = this.y, jj = this.y + this.height; j < jj; ++j) {
+        for (var i = this.x, ii = this.x + this.width; i < ii; ++i) {
             points.push(new Point(i, j))
         }
     }

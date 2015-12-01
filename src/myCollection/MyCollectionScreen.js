@@ -21,7 +21,7 @@ MyCollectionScreen.prototype = Object.create(AbstractScreen.prototype)
 MyCollectionScreen.prototype.constructor = MyCollectionScreen
 
 MyCollectionScreen.prototype.getCards = function() {
-    for (var i = 0, ii = 8; i < ii; ++i) {
+    for (var i = 0, ii = 1; i < ii; ++i) {
         this.myCollectionCardReaders[i].getCard()
     }
 }
