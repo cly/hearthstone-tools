@@ -60,7 +60,7 @@ MyCollectionCardReader.prototype.getCostTemplate = function() {
     .map((color) => tinycolor('#' + color).getLuminance())
     .map((luminance) => (luminance >= 0.98 ? 1 : 0))
 
-    var str = JSON.stringify(template).match(/.{1,72}/g).join('\n')
+    var str = JSON.stringify(template).match(/.{1,72}/g).join(']\n[')
     console.log(str)
 }
 
