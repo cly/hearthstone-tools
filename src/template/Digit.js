@@ -2,8 +2,16 @@ var BinaryMap = require('../geometry/BinaryMap')
 
 var Digit = function() {}
 
+Digit.prototype.getAll = function() {
+    return {
+        '0': this.get(0),
+        '3': this.get(3),
+        '10': this.get(10)
+    }
+}
+
 Digit.prototype.get = function(value) {
-    if (!value || value > 10 || value < 0) {
+    if (typeof value === 'undefined' || value > 10 || value < 0) {
         throw new Error('`value` must be between 0 and 10 inclusive.')
     }
 
