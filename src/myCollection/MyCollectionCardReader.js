@@ -84,9 +84,13 @@ MyCollectionCardReader.prototype.getCost = function() {
     var digits = digit.getAll()
 
     var keys = Object.keys(digits)
+    // for (var i = 0, ii = 1; i < ii; ++i) {
     for (var i = 0, ii = keys.length; i < ii; ++i) {
         console.log(keys[i], digits[keys[i]].getVariance(testMap))
     }
+    console.log('')
+
+    //TODO should return percent error of the number itself -- MAYBE
 
 
 

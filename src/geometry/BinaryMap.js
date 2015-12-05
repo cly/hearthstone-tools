@@ -39,33 +39,63 @@ BinaryMap.prototype.getVariance = function(map) {
         throw new Error('`map` must be an instance of `BinaryMap`')
     }
 
-    // Single pass traversal of both lists. If same number found, then increment counter.
-    // Otherwise iterate on smallest of the two lists.
-    var i = 0
-    var j = 0
-    var variance = 0
+    // Find the smallest offset starting from test center.
+    var smallestVariance
+    var smallestVarianceOffset
+    var testCenter = new Point(0, 0)
 
     while(true) {
-        if (i < this.points.length && j < map.points.length) {
-            if (this.points[i].equals(map.points[j])) {
-                // No variance all good.
-                i++
-                j++
-            } else if (this.points[i].isLessThan(map.points[j])) {
-                variance += 1
-                i++
-            } else {
-                variance += 1
-                j++
+        for (var i = -1, ii = 1; i <= ii; ++i) {
+            for (var j = -1, jj = 1; j <= jj; ++j) {
+                var offset = testCenter.add(new Point(i, j))
+                var variance = this.getVarianceWithOffset(map, offset)
+
+                if ((typeof smallestVariance === 'undefined') || (variance < smallestVariance)) {
+                    smallestVariance = variance
+                    smallestVarianceOffset = offset
+                }
             }
-        } else if (i < this.points.length) {
-            variance += 1
-            i++
-        } else if (j < map.points.length) {
-            variance += 1
-            j++
+        }
+
+        if (!smallestVarianceOffset.equals(testCenter)) {
+            testCenter = smallestVarianceOffset
         } else {
-            break;
+            return smallestVariance/this.points.length
+        }
+    }
+}
+
+BinaryMap.prototype.getVarianceWithOffset = function(map, offset) {
+    if (!(map instanceof BinaryMap)) {
+        throw new Error('`map` must be an instance of `BinaryMap`')
+    }
+
+    // Hash points to a map. Iterate over map to find variance.
+    var lookup = {}
+    var variance = 0
+    for (var i = 0, ii = this.points.length; i < ii; ++i) {
+        var point = this.points[i]
+        var key = point.toString()
+        lookup[key] = 1
+    }
+
+    for (var i = 0, ii = map.points.length; i < ii; ++i) {
+        var point = map.points[i]
+        point = point.add(offset)
+        var key = point.toString()
+        if (lookup[key] === 1) {
+            lookup[key] = 0
+        } else {
+            lookup[key] = 2
+        }
+    }
+
+    var allKeys = Object.keys(lookup)
+
+    for (var i = 0, ii = allKeys.length; i < ii; ++i) {
+        var key = allKeys[i]
+        if (lookup[key] !== 0) {
+            variance += 1
         }
     }
 

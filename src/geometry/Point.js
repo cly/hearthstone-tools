@@ -37,4 +37,8 @@ Point.prototype.isLessThan = function(point) {
     return (this.y < point.y) || (this.y === point.y && this.x < point.x)
 }
 
+Point.prototype.isOrigin = function() {
+    return this.x === 0 && this.y === 0
+}
+
 module.exports = Point
