@@ -1,6 +1,9 @@
 # hearthstone-tools
 Export your cards, build your decks and more!
 
+## Demo!
+[Pager demo](hearthcostpager.gif)
+
 ## Pre-installation
 Please follow the instructions at https://github.com/octalmage/robotjs to install the dependencies for `robotjs`.
 
