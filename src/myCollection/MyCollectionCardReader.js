@@ -51,24 +51,23 @@ MyCollectionCardReader.prototype.getPolygon = function() {
 
 // Should only be used for testing. Basically creates the test mask.
 MyCollectionCardReader.prototype.getCostTemplate = function() {
-    // var polygon = this.getPolygon()
-    // var width = 36
-    // var height = 25
-    // var costPolygon = new Rect(polygon.x, polygon.y - 4, width, height)
-    // var points = costPolygon.getPoints()
+    var polygon = this.getPolygon()
+    var width = 45
+    var height = 30
+    var costPolygon = new Rect(polygon.x - 5, polygon.y - 5, width, height)
+    var points = costPolygon.getPoints()
 
-    // var template = points
-    // .map((point) => point.add(gameWindow.getOffset()))
-    // .map((screenPoint) => robot.getPixelColor(screenPoint.x, screenPoint.y))
-    // .map((color) => tinycolor('#' + color).getLuminance())
-    // .map((luminance) => (luminance >= 0.98 ? 1 : 0))
+    var template = points
+    .map((point) => point.add(gameWindow.getOffset()))
+    .map((screenPoint) => robot.getPixelColor(screenPoint.x, screenPoint.y))
+    .map((color) => tinycolor('#' + color).getLuminance())
+    .map((luminance) => (luminance >= 0.98 ? 1 : 0))
 
-    // var str = JSON.stringify(template).match(/.{1,72}/g).join(']\n[')
-    // console.log(str)
+    var map = new BinaryMap(template, width, height)
+    console.log(map.toPrettyString())
 }
 
 MyCollectionCardReader.prototype.getCost = function() {
-    // this.getCostTemplate()
     var polygon = this.getPolygon()
     var costPolygon = new Rect(polygon.x - 5, polygon.y - 5, 45, 30)
     var points = costPolygon.getPoints()
@@ -84,41 +83,25 @@ MyCollectionCardReader.prototype.getCost = function() {
     var digits = digit.getAll()
 
     var keys = Object.keys(digits)
-    // for (var i = 0, ii = 1; i < ii; ++i) {
+    var smallestVariance
+    var smallestVarianceDigit
     for (var i = 0, ii = keys.length; i < ii; ++i) {
-        console.log(keys[i], digits[keys[i]].getVariance(testMap))
+        var variance = digits[keys[i]].getVariance(testMap)
+        if (typeof smallestVariance === 'undefined' || variance < smallestVariance) {
+            smallestVariance = variance
+            smallestVarianceDigit = keys[i]
+        }
     }
-    console.log('')
 
-    //TODO should return percent error of the number itself -- MAYBE
-
-
-
-
-
-    // // var numBright = points
-    // // .map((point) => point.add(gameWindow.getOffset()))
-    // // .forEach((point) => robot.moveMouseSmooth(point.x, point.y))
-
-    // console.log(numBright)
-
-    // console.log(points.length)
-    // console.log(colors[0])
+    return smallestVarianceDigit
 }
 
 MyCollectionCardReader.prototype.getCard = function() {
-    // var polygon = this.getPolygon()
     var cost = this.getCost()
 
-
-
-    // 77, 212
-    // top 286
-    // bottom 292
-    //
-
-    // console.log(11111)
-    // console.log(polygon)
+    return {
+        cost: cost
+    }
 }
 
 module.exports = MyCollectionCardReader

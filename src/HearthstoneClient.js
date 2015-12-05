@@ -34,7 +34,10 @@ HearthstoneClient.prototype.go = function * (view) {
 }
 
 HearthstoneClient.prototype.page = function * () {
-    myCollectionScreen.getCards()
+    while(true) {
+        myCollectionScreen.getCards()
+        yield myCollectionScreen.myCollectionNextPageButton.click()
+    }
     // yield myCollectionScreen.myCollectionNextPageButton.click()
     // yield myCollectionScreen.myCollectionNextPageButton.click()
     // yield myCollectionScreen.myCollectionPreviousPageButton.click()
